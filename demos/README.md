@@ -26,11 +26,3 @@
 - **想看文档处理？** → [`doc-pipeline/`](doc-pipeline/)，已独立开源的完整项目（有独立 README 和 LICENSE）
 - **想看理论写作？** → [`theory/`](theory/)，推荐先看 CS/EE 版（更完整）
 
-## 发布物料
-
-框架的社交媒体推广文案和 B 站文字版，供参考：
-
-| 文件 | 说明 |
-|:---|:---|
-| [`publishing/bilibili_AI判断力_文字版.md`](publishing/bilibili_AI判断力_文字版.md) | B 站视频的文字稿 |
-| [`publishing/theory_v3.3_social_media_v3.txt`](publishing/theory_v3.3_social_media_v3.txt) | 小红书推广文案 |
