@@ -1,10 +1,12 @@
-# Multi-Agent Skill: Relay（for Claude Code）
+# Multi-Agent Skill: Relay — Claude Code 多 Agent 协作框架
 
-> 一场 AI 团队的接力赛——分流器是教练选人（简单任务不上场），Wave 调度是棒次安排（同一棒多人并行跑，不同棒按交接规则顺序来），依赖分析是交接棒规则，验收者是终点裁判，批评家是赛前质疑队友状态的人。
+> 一个 `.md` 文件，让你的 AI 从"一个人干"变成"一个团队干"。
 >
-> **MiMo / DeepSeek 用户**：这个 skill 让 LLM 的工程能力和开发体验上一个台阶——多 Agent 协作、对抗审查、自动验收，都是原生没有的。已在 MiMo (Claude) 和 DeepSeek 上完成双模型验证。
+> 分流器是教练选人（简单任务不上场），Wave 调度是棒次安排（同一棒多人并行跑，不同棒按交接规则顺序来），依赖分析是交接棒规则，验收者是终点裁判，批评家是赛前质疑队友状态的人。
 >
-> **所有人**：5 分钟上手，看到差别。你可以基于它搭自己的多 Agent 团队，做自己的项目，改自己的框架。
+> **完整多 Agent 协作调度（Wave 并行、独立审计、经验沉淀）需要 Claude Code 环境。** 核心方法论思想（分流器、对抗审查、需求锚定）可迁移到任何支持 system prompt 的平台（Codex、GLM、Kimi、DeepSeek 等）。已在 MiMo (Claude) + DeepSeek 上完成双模型验证。
+>
+> 5 分钟上手，看到差别。你可以基于它搭自己的多 Agent 团队，做自己的项目，改自己的框架。
 
 ## 目录
 
@@ -27,7 +29,16 @@
 
 ## 它是什么
 
-一个 `.md` 文件，复制到 Claude Code 就能用。把 AI 任务变成一场接力赛——每个角色只跑自己那一棒，交接棒有规则，终点有裁判。
+一套多 Agent 协作调度方法论，打包成一个 `.md` 文件。把 AI 任务变成一场接力赛——每个角色只跑自己那一棒，交接棒有规则，终点有裁判。
+
+**两层能力，迁移程度不同**：
+
+| 层 | 内容 | 平台要求 |
+|:---|:---|:---|
+| **方法论层**（可迁移） | 分流器（3 问题判断复杂度）、对抗审查思想、需求锚定、经验沉淀理念 | 任何支持 system prompt 的平台 |
+| **调度层**（需 Claude Code） | Wave 并行调度、子 Agent spawn、独立审计员、自动复盘 | 依赖 Claude Code 的 Agent 工具 |
+
+Claude Code 用户用 slash command 调用，获得完整体验。其他平台用户可以将方法论层的内容迁移到自己的 system prompt 中——分流器逻辑和对抗审查思想仍然有效，但无法实现并行 Agent 调度。
 
 - **教练选人**（分流器）：3 个问题判断任务该走哪条路，简单任务不上场，不浪费资源
 - **赛前审查**（计划审查 Agent）：任务执行前独立 Agent 按 5 维度审查计划，有问题在起跑前修正
@@ -40,7 +51,7 @@
 
 - 不是 Python 框架（AutoGen/CrewAI/LangGraph 是引擎，这是驾驶手册）
 - 不是独立运行的软件系统
-- 不替代 Claude Code 的 Agent 工具，而是优化其使用方式
+- 不替代 Claude Code 的 Agent 工具，而是优化其使用方式（完整调度需 Claude Code）
 - 不让 AI 更聪明，而是让 AI 不敢敷衍——强制交叉审查，错误必须付出返工代价
 - **没有做到模型层**——改不了模型权重、训不了专属参数。说白了就是一套提示词工程方法论。但这恰恰是大多数人的现状：没有能力修改模型，只能站在强大 AI 的风口上，用 skill 层的创新武装自己。不是什么颠覆行业的东西，是在能力范围内做到最好
 - **和豆包之类的区别**：豆包很会说话——"最正确最直接最有效最不绕弯子地告诉你"，犯了错说"下次一定不错"然后继续错。这个框架里的批评家不跟你客气，问题就是问题，不分级不安慰。你不一定每次都爱听，但它说的是真话
@@ -98,7 +109,8 @@ Task C 具体发现：批评家发现 Lamport 时钟在网络分区重连后因�
 
 ## 拿它能做什么
 
-- **如果你是 MiMo / DeepSeek 用户**：这个 skill 补齐 LLM 原生没覆盖的多 Agent 协作和对抗审查能力，工程任务从"能跑"变"跑得稳"。MiMo 用户详见 [`docs/mimo_guide.md`](docs/mimo_guide.md)
+- **如果你是 Claude Code 用户**：装上即获得完整多 Agent 协作能力——Wave 并行调度、对抗审查、独立审计、经验沉淀，工程任务从"能跑"变"跑得稳"。MiMo 用户详见 [`docs/mimo_guide.md`](docs/mimo_guide.md)
+- **如果你在用其他 AI 平台**（Codex、GLM、Kimi、DeepSeek 等）：方法论层（分流器逻辑、对抗审查思想、核心原则）可以迁移到你的 system prompt 中，提升任务拆解和审查质量
 - **如果你想 5 分钟看到差别**：装上跑一个复杂任务，重点看批评家挑出了什么你没注意到的问题
 - **如果你想做二次开发**：基于这个框架搭你自己的多 Agent 团队——改分流器判据、加角色、适配你的领域，3 个点就能出你自己的版本。已有 12 个版本的踩坑记录可供参考。详见 [`docs/fork_guide.md`](docs/fork_guide.md)
 - **如果你想构建新项目**：这不是一个用完就扔的工具，是一套可复用的多 Agent 协作框架。用它做过的项目包括游戏、文档处理、自学习、理论研究——你也可以在你的领域上做。详见 [`examples/cases.md`](examples/cases.md)
@@ -107,15 +119,18 @@ Task C 具体发现：批评家发现 Lamport 时钟在网络分区重连后因�
 
 ### 前置条件
 
-- [Claude Code](https://claude.ai/code)（需要 Claude 订阅）
+- [Claude Code](https://claude.ai/code)（完整多 Agent 调度需要）；其他平台可迁移方法论层
 
-### 安装（30 秒）
+### 安装
 
 ```bash
 git clone https://github.com/kesusu/multi-agent-skill.git
 ```
 
-**必须装**（1 个文件，skill 就是它）：
+核心就一个文件：`commands/multi-agent.md`。根据你的平台选择安装方式：
+
+#### Claude Code（slash command 方式）
+
 ```bash
 # macOS / Linux
 cp multi-agent-skill/commands/multi-agent.md ~/.claude/commands/multi-agent.md
@@ -123,6 +138,8 @@ cp multi-agent-skill/commands/multi-agent.md ~/.claude/commands/multi-agent.md
 # Windows (PowerShell)
 Copy-Item multi-agent-skill\commands\multi-agent.md $env:USERPROFILE\.claude\commands\multi-agent.md
 ```
+
+重启 Claude Code，输入 `/multi-agent` 验证命令已注册。
 
 **可选增强**（CLAUDE.md + rules，提升整体工程质量）：
 
@@ -138,7 +155,18 @@ Copy-Item multi-agent-skill\CLAUDE.md $env:USERPROFILE\.claude\CLAUDE.md
 Copy-Item -Recurse multi-agent-skill\rules $env:USERPROFILE\.claude\rules
 ```
 
-重启 Claude Code，输入 `/multi-agent` 验证命令已注册。
+#### 其他平台（方法论迁移）
+
+> **注意**：以下方式仅支持方法论层的迁移（分流器逻辑、对抗审查思想、核心原则）。完整多 Agent 协作调度（Wave 并行、子 Agent spawn、独立审计员）需要 Claude Code 环境。
+
+| 平台 | 粘贴位置 | 能获得什么 |
+|:---|:---|:---|
+| OpenAI Codex | 项目根目录的 `codex.md` 或 system prompt | 分流器 + 对抗审查思想 |
+| Cursor | 项目根目录的 `.cursorrules` | 分流器 + 对抗审查思想 |
+| Windsurf | 项目根目录的 `.windsurfrules` | 分流器 + 对抗审查思想 |
+| GLM / Kimi / DeepSeek | 对话的系统提示词 | 分流器 + 核心原则 |
+
+分流器的 3 个问题（判断任务复杂度）和对抗审查思想（执行者和审查者分离）在任何平台都有效——它们是方法论，不依赖特定工具。
 
 ### 试一个简单任务看分流器（1 分钟）
 
@@ -171,33 +199,34 @@ Skill 文件开头的 3 个问题决定分流逻辑。想适配你的场景？�
 | 看跨模型验证报告     | [`evaluation/FINAL_REPORT.md`](evaluation/FINAL_REPORT.md) + [`evaluation/SCORING_SHEET.md`](evaluation/SCORING_SHEET.md) |
 | 看实际使用案例       | [`examples/cases.md`](examples/cases.md) — 5 个样例覆盖工程/文档/理论/自审查                  |
 | 把它写进简历         | [`docs/resume_guide.md`](docs/resume_guide.md) — 简历模板 + 面试问答                          |
+| 其他平台怎么用 | 方法论层可迁移（分流器+对抗审查），参见上方「其他平台（方法论迁移）」                      |
 | MiMo 用户专属指南    | [`docs/mimo_guide.md`](docs/mimo_guide.md)                                                   |
-| 提升整体工程质量     | [`CLAUDE.md`](CLAUDE.md) + [`rules/`](rules/) — 复杂度分级、交付标准、专项规则（可选）        |
+| 提升整体工程质量     | [`CLAUDE.md`](CLAUDE.md) + [`rules/`](rules/) — 复杂度分级、交付标准、专项规则（仅 Claude Code）|
 
 ## 适合谁
 
-- **想体验多 Agent 协作的新人**：没用过多 Agent 框架？这是一个好的起点——一个 .md 文件，零依赖，5 分钟看到效果，然后自己改改看
-- **想用 MiMo 或 DeepSeek 做项目的用户**：LLM + 这个 skill，项目能力和开发体验有明显提升。已在两个模型上验证
+- **想入门多 Agent 协作的初学者**：没用过多 Agent 框架？这是一个好的起点——一个 .md 文件，零依赖，5 分钟看到效果，然后自己改改看。不需要会写代码，不需要懂框架原理
+- **想用 AI 做项目但不知道从哪开始的人**：Claude Code 用户装上即用；其他平台用户可以迁移方法论思想。已有游戏、文档处理、理论研究等现成案例可以参考
 - **想在 AI 浪潮里武装自己的人**：改不了模型没关系，大多数人都改不了。但你可以在应用层做创新——用提示词工程让 AI 团队替你干活，这不是程序员的专利
 - **想搭建自己的多 Agent 团队的人**：这个 skill 给你一套现成的调度逻辑和审查机制，你可以在上面加角色、改分流器、适配你的领域——搭出属于你自己的 AI 协作团队
 - **想做出东西讲给别人听的学生/工程师**：基于它搭了什么、改了什么、验证了什么——这才是你讲得出故事的东西
 
 ## 不适合谁
 
-- **想跟大厂代码工具（Codex、Claude 原生）比写代码性能的人**：定位不同——人家是重型引擎，这是轻量 skill。用 MiMo + 这个 skill 能看到项目能力和开发体验的提升，但不是去跟大厂比肩
+- **想跟大厂代码工具（Codex、Claude 原生）比写代码性能的人**：定位不同——人家是重型引擎，这是轻量方法论。装上能看到项目能力和开发体验的提升，但不是去跟大厂比肩
 - **想跑一堆简单任务的人**：分流器会把简单任务判入极简模式，跳过全部流程，装了和没装差不多
-- **需要多模型混用的场景**：这个 skill 强绑定 Claude Code
+- **需要在非 Claude Code 平台上跑完整多 Agent 调度的人**：Wave 并行、子 Agent spawn、独立审计依赖 Claude Code 的 Agent 工具。其他平台可以迁移方法论层（分流器+对抗审查），但完整调度跑不起来
 
 ## 项目结构
 
-### 给 Claude Code 用的（复制到 `~/.claude/`）
+### 复制到 `~/.claude/`（Claude Code 用户）
 
 ```
 ~/.claude/
 ├── commands/
-│   └── multi-agent.md          # ★ 核心：skill 主文件（约 500 行），输入 /multi-agent 触发
-├── CLAUDE.md                   # 全局工程规范（复杂度分级、交付标准、权限管理）
-└── rules/
+│   └── multi-agent.md          # ★ 核心：skill 主文件（约 500 行），完整多 Agent 调度
+├── CLAUDE.md                   # [可选] 全局工程规范（复杂度分级、交付标准、权限管理）
+└── rules/                      # [可选] 专项规则
     ├── coding_cycle.md         # 编程执行循环：定位→判断→修改→验证→收尾
     ├── engineering_scorecard.md # 6 维工程能力自评
     ├── multi_agent_improvements.md # Multi-Agent 速查卡
@@ -208,7 +237,9 @@ Skill 文件开头的 3 个问题决定分流逻辑。想适配你的场景？�
     └── word_format.md          # Word 文档排版规范
 ```
 
-**只有 `commands/multi-agent.md` 是必须的。** CLAUDE.md 和 rules/ 是可选增强——即使不装，skill 也能独立运行。它们解决的是"装了 skill 之后怎么保证整体工程质量"的问题。
+**只有 `commands/multi-agent.md` 是必须的。** CLAUDE.md 和 rules/ 是可选增强——即使不装，skill 也能独立运行。
+
+**其他平台**：`commands/multi-agent.md` 中的方法论层（分流器、对抗审查思想、核心原则）可以迁移到你的 system prompt 中，详见上方「其他平台（方法论迁移）」。
 
 ### 给人看的（不需要复制，直接在仓库里读）
 
