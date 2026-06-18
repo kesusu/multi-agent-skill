@@ -64,13 +64,13 @@ Claude Code 用户用 slash command 调用，获得完整体验。其他平台�
 |:---------|:----------------------------------------------|:-------------------------------------------------------------------------------------|
 | 开源打包 | 这份 README、12 个文档、A/B 实验设计，全部由多 Agent 团队完成 | 架构师定叙事、研究员对齐数据、批评家抓自我否定的措辞、验收者守住核心主题               |
 | 文档处理 | 扫描 PDF 转可编辑 Word，LaTeX 公式双击可改，已独立开源       | 执行者写 pipeline、批评家抓出 5 个"规则对但没执行"的隐性缺陷                          |
-| 游戏开发 | 纯 HTML+JS 愤怒的小鸟，910 行，2D 物理+关卡+音频            | 架构师搭引擎、测试员踩边界、批评家发现物理参数没联动校准 → [`demos/angry_birds.html`](demos/angry_birds.html) |
-| 理论研究 | "AI 时代你真正的活儿是什么"——从焦虑到行动的定位框架 | 4 轮迭代：理论家写框架 → 场景测试员发现初版对文科生不可读 → 重写通用入口 → 产出 CS/EE 专属版 [`推荐：CS/EE版`](demos/theory_v3.3_CS%20OR%20EE.md) [`通用版`](demos/theory_v3.3建议看另外一个更好的版本.md) |
-| 自学习   | 自主学习教材→出题→批改→反思→做笔记，用于开卷考试（框架内验证）  | "学"和"查"分离，避免自己出题自己答的盲区                                             |
-| 工程训练 | 自动出题+评分+对比基线的能力训练系统（框架内验证）             | 批评家对标基线找差距，不是自己觉得自己行                                               |
+| 游戏开发 | 纯 HTML+JS 愤怒的小鸟，910 行，2D 物理+关卡+音频            | 架构师搭引擎、测试员踩边界、批评家发现物理参数没联动校准 → [`demos/angry_birds/`](demos/angry_birds/) |
+| 理论研究 | "AI 时代你真正的活儿是什么"——从焦虑到行动的定位框架 | 4 轮迭代：理论家写框架 → 场景测试员发现初版对文科生不可读 → 重写通用入口 → 产出 CS/EE 专属版 [`推荐：CS/EE版`](demos/theory/theory_v3.3_CS%20OR%20EE.md) [`通用版`](demos/theory/theory_v3.3建议看另外一个更好的版本.md) |
+| 自学习   | 自主学习教材→出题→批改→反思→做笔记，用于开卷考试 | "学"和"查"分离，避免自己出题自己答的盲区 → [`demos/self-learning/`](demos/self-learning/) |
+| 工程训练 | 自动出题+评分+对比基线的能力训练系统             | 零依赖评分脚本+六维记分卡，量化评估 AI 编码能力 → [`demos/engineering-train/`](demos/engineering-train/) |
 | A/B 实验 | 3 组对照实验验证分流器准确性+对抗审查价值                   | Task C 对照组漏 2 个严重漏洞，批评家是唯一的增量价值                                   |
 | 跨模型验证 | MiMo + DeepSeek 双模型 × 6 任务 × 2 条件 = 24 个独立对话   | 无 Skill 基线 0/54（跨模型一致），批评家增量 MiMo +9、DeepSeek +10                   |
-| 自审查   | 用多 Agent 框架审查框架自身                              | 审计员 catch 到调度员不会自认的违规                                                   |
+| 自审查   | 用多 Agent 框架审查框架自身                              | 审计员 catch 到调度员不会自认的违规 → [`demos/self-audit/`](demos/self-audit/) |
 
 详见 [`examples/cases.md`](examples/cases.md)。
 
@@ -266,10 +266,17 @@ multi-agent-skill/
 ├── examples/
 │   └── cases.md                # 5 个实际使用样例（含可复现命令）
 └── demos/
-    ├── angry_birds.html        # 愤怒的小鸟（架构师+执行者+测试员+批评家）
+    ├── README.md               # Demo 索引 + 快速指引
+    ├── angry_birds/            # 愤怒的小鸟（架构师+执行者+测试员+批评家）
+    │   └── angry_birds.html
     ├── doc-pipeline/           # PDF→Word（已独立开源，执行者+批评家）
-    ├── theory_v3.3_CS OR EE.md # ★ 理论文档 CS/EE 版（推荐，更完整）
-    └── theory_v3.3建议看另外一个更好的版本.md  # 理论文档通用版（4轮迭代，文科生友好入口）
+    ├── theory/                 # 理论文档（两个版本）
+    │   ├── theory_v3.3_CS OR EE.md   # ★ CS/EE 版（推荐，更完整）
+    │   └── theory_v3.3建议看另外一个更好的版本.md  # 通用版（文科生友好入口）
+    ├── engineering-train/      # 工程训练（量化评估 AI 编码能力，零依赖评分脚本）
+    ├── self-audit/             # 自审查（8 项检查清单 + 实际诊断报告）
+    ├── self-learning/          # 自学习（"学查分离"，激光原理考试案例）
+    └── publishing/             # 发布物料（B站文字版、社交媒体文案）
 ```
 
 **最有价值的 3 个文件**：`commands/multi-agent.md`（产品核心）、`docs/fork_guide.md`（定制入口）、`docs/failure_cases.md`（教学价值最高）。
