@@ -1,0 +1,26 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Internal docs (not for public release)
+docs/deliverables.md
+docs/materials_audit.md
+docs/value_analysis.md
+changelog/
+technical/
+
+# _internal/ — 污染数据和测试工具，不公开
+_internal/
+
+# evaluation/ — 保留干净的评估文件，排除测试工具目录
+evaluation/mimo_test/
+evaluation/mimo_results_CONTAMINATED/
+evaluation/deepseek_test/
+evaluation/TEST_PLAN_DEEPSEEK.md
+
